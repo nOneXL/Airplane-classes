@@ -16,8 +16,8 @@ public class Shoval extends HaronVehicle implements AerialBdaVehicle{
 
     @Override
     public String preformBda() {
-        return MessageFormat.format(("{0}: {1} taking pictures of {2} with: {3}"),
-                super.getPilotName(), this.getClass().getName(),
+        return MessageFormat.format(("{0}: {1} taking pictures of {2} with: {3} camera"),
+                super.getPilotName(), this.getClass().getSimpleName(),
                 ((BdaMission) this.getAerialVehicleMission()).getObjective(), this.cameraType);
     }
 }

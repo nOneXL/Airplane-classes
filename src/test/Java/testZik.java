@@ -1,6 +1,4 @@
-import AerialVehicles.FighterJets.F16;
-import AerialVehicles.UAVs.Haron.Shoval;
-import AerialVehicles.UAVs.Hermes.Zik;
+import AerialVehicles.Zik;
 import Entities.Coordinates;
 import Missions.AttackMission;
 import Missions.BdaMission;
@@ -15,7 +13,7 @@ public class testZik {
     AttackMission attackMission = new AttackMission("suspect house", coordinatesToAttack);
     BdaMission bdaMission = new BdaMission("suspect house", coordinatesToAttack);
     IntelligenceMission intelligenceMission = new IntelligenceMission("Deir al Balah", coordinatesToAttack);
-    private Zik zik = new Zik("thermal", "elint", "Fireman Sam", bdaMission, 14, true);
+    private Zik zik = new Zik("Fireman Sam", bdaMission, 14, true, "elint", "thermal");
 
     @Test
     public void testAttackImplementedInZik() throws MissionTypeException {
@@ -29,7 +27,7 @@ public class testZik {
 
     @Test
     public void testCollectIntelligence() throws MissionTypeException {
-        zik.setMission(intelligenceMission);
+        zik.setAerialVehicleMission(intelligenceMission);
         String expectedMessage = "Fireman Sam: Zik Collecting Data in Deir al Balah with sensor type: elint";
         String message = zik.collectIntelligence();
         assertEquals(message,expectedMessage);
@@ -37,7 +35,7 @@ public class testZik {
 
     @Test
     public void testBda() throws MissionTypeException {
-        zik.setMission(bdaMission);
+        zik.setAerialVehicleMission(bdaMission);
         String expectedMessage = "Fireman Sam: Zik taking pictures of suspect house with: thermal camera";
         String message = zik.preformBda();
         assertEquals(message,expectedMessage);
@@ -45,11 +43,11 @@ public class testZik {
 
     @Test
     public void testRepairZik(){
-        zik.setHoursOfFlightSinceLastRepair(75);
+        zik.setFlightTimeBeforeLastFix(75);
         zik.check();
-        assertEquals(zik.getHoursOfFlightSinceLastRepair(),75);
-        zik.setHoursOfFlightSinceLastRepair(102);
+        assertEquals(zik.getFlightTimeBeforeLastFix(),75);
+        zik.setFlightTimeBeforeLastFix(102);
         zik.check();
-        assertEquals(zik.getHoursOfFlightSinceLastRepair(),0);
+        assertEquals(zik.getFlightTimeBeforeLastFix(),0);
     }
 }

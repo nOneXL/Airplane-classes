@@ -15,7 +15,7 @@ public class F15 extends FighterAircraft implements AerialIntelligenceVehicle {
     @Override
     public String collectIntelligence() {
         return MessageFormat.format(("{0}: {1} Collecting Data in {2} with sensor type: {3}"),
-                super.getPilotName(), this.getClass().getName(),
+                super.getPilotName(), this.getClass().getSimpleName(),
                 ((IntelligenceMission) this.getAerialVehicleMission()).getRegion(), this.sensorType);
     }
 

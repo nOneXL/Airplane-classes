@@ -14,7 +14,7 @@ public class testEitan {
     AttackMission attackMission = new AttackMission("suspect house", coordinatesToAttack);
     BdaMission bdaMission = new BdaMission("suspect house", coordinatesToAttack);
     IntelligenceMission intelligenceMission = new IntelligenceMission("Deir al Balah", coordinatesToAttack);
-    private Eitan eitan = new Eitan(1, "nimrod", "elint", "Sheleg", attackMission, 52, true);
+    private Eitan eitan = new Eitan("Sheleg", attackMission, 52, true, "elint", 1, "nimrod");
 
     @Test
     public void testAttack(){
@@ -25,7 +25,7 @@ public class testEitan {
 
     @Test
     public void testCollectIntelligence() throws MissionTypeException {
-        eitan.setMission(intelligenceMission);
+        eitan.setAerialVehicleMission(intelligenceMission);
         String expectedMessage = "Sheleg: Eitan Collecting Data in Deir al Balah with sensor type: elint";
         String message = eitan.collectIntelligence();
         assertEquals(message,expectedMessage);
@@ -43,11 +43,11 @@ public class testEitan {
 
     @Test
     public void testRepairEitan(){
-        eitan.setHoursOfFlightSinceLastRepair(125);
+        eitan.setFlightTimeBeforeLastFix(125);
         eitan.check();
-        assertEquals(eitan.getHoursOfFlightSinceLastRepair(),125);
-        eitan.setHoursOfFlightSinceLastRepair(155);
+        assertEquals(eitan.getFlightTimeBeforeLastFix(),125);
+        eitan.setFlightTimeBeforeLastFix(155);
         eitan.check();
-        assertEquals(eitan.getHoursOfFlightSinceLastRepair(),0);
+        assertEquals(eitan.getFlightTimeBeforeLastFix(),0);
     }
 }

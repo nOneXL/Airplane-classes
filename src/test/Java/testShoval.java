@@ -1,5 +1,4 @@
-import AerialVehicles.UAVs.Haron.Eitan;
-import AerialVehicles.UAVs.Haron.Shoval;
+import AerialVehicles.Shoval;
 import Entities.Coordinates;
 import Missions.AttackMission;
 import Missions.BdaMission;
@@ -14,11 +13,11 @@ public class testShoval {
     AttackMission attackMission = new AttackMission("suspect house", coordinatesToAttack);
     BdaMission bdaMission = new BdaMission("suspect house", coordinatesToAttack);
     IntelligenceMission intelligenceMission = new IntelligenceMission("Deir al Balah", coordinatesToAttack);
-    private Shoval shoval = new Shoval("B&W", 2, "Spice250", "commint", "Lagertha", bdaMission, 41, true);
+    private Shoval shoval = new Shoval("Lagertha", bdaMission, 41, true, "commint", 2, "Spice250", "B&W");
 
     @Test
     public void testAttack() throws MissionTypeException {
-        shoval.setMission(attackMission);
+        shoval.setAerialVehicleMission(attackMission);
         String expectedMessage = "Lagertha: Shoval Attacking suspect house with: Spice250X2";
         String message = shoval.attack();
         assertEquals(message, expectedMessage);
@@ -26,7 +25,7 @@ public class testShoval {
 
     @Test
     public void testCollectIntelligence() throws MissionTypeException {
-        shoval.setMission(intelligenceMission);
+        shoval.setAerialVehicleMission(intelligenceMission);
         String expectedMessage = "Lagertha: Shoval Collecting Data in Deir al Balah with sensor type: commint";
         String message = shoval.collectIntelligence();
         assertEquals(message,expectedMessage);
@@ -34,7 +33,7 @@ public class testShoval {
 
     @Test
     public void testBda() throws MissionTypeException {
-        shoval.setMission(bdaMission);
+        shoval.setAerialVehicleMission(bdaMission);
         String expectedMessage = "Lagertha: Shoval taking pictures of suspect house with: B&W camera";
         String message = shoval.preformBda();
         assertEquals(message,expectedMessage);
@@ -42,11 +41,11 @@ public class testShoval {
 
     @Test
     public void testRepairShoval(){
-        shoval.setHoursOfFlightSinceLastRepair(125);
+        shoval.setFlightTimeBeforeLastFix(125);
         shoval.check();
-        assertEquals(shoval.getHoursOfFlightSinceLastRepair(),125);
-        shoval.setHoursOfFlightSinceLastRepair(155);
+        assertEquals(shoval.getFlightTimeBeforeLastFix(),125);
+        shoval.setFlightTimeBeforeLastFix(155);
         shoval.check();
-        assertEquals(shoval.getHoursOfFlightSinceLastRepair(),0);
+        assertEquals(shoval.getFlightTimeBeforeLastFix(),0);
     }
 }

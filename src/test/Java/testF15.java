@@ -1,5 +1,5 @@
-import AerialVehicles.FighterJets.F15;
-import AerialVehicles.FighterJets.F16;
+
+import AerialVehicles.F15;
 import Entities.Coordinates;
 import Missions.AttackMission;
 import Missions.BdaMission;
@@ -14,7 +14,7 @@ public class testF15 {
     AttackMission attackMission = new AttackMission("suspect house", coordinatesToAttack);
     BdaMission bdaMission = new BdaMission("suspect house", coordinatesToAttack);
     IntelligenceMission intelligenceMission = new IntelligenceMission("Deir al Balah", coordinatesToAttack);
-    private F15 f15 = new F15("elint", 2, "Spice250", "Donald Duck", attackMission, 10, true);
+    private F15 f15 = new F15("Donald Duck", attackMission, 10, true, 2, "Spice250", "elint");
 
     @Test
     public void testAttack(){
@@ -25,7 +25,7 @@ public class testF15 {
 
     @Test
     public void testCollectIntelligence() throws MissionTypeException {
-        f15.setMission(intelligenceMission);
+        f15.setAerialVehicleMission(intelligenceMission);
         String expectedMessage = "Donald Duck: F15 Collecting Data in Deir al Balah with sensor type: elint";
         String message = f15.collectIntelligence();
         assertEquals(message,expectedMessage);

@@ -26,9 +26,8 @@ public abstract class HaronVehicle extends UAVs implements AerialAttackVehicle {
     @Override
     public String attack() {
         return MessageFormat.format(("{0}: {1} Attacking {2} with: {3}X{4}"),
-                super.getPilotName(), this.getClass().getName(),
-                ((AttackMission) this.getAerialVehicleMission()).getTarget(), super.getAerialVehicleMission(),
-                this.missleType, this.missleAmount);
+                super.getPilotName(), this.getClass().getSimpleName(),
+                ((AttackMission) this.getAerialVehicleMission()).getTarget(), this.missleType, this.missleAmount);
     }
 
     public int getMissleAmount() {

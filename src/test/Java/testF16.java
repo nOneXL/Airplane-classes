@@ -1,9 +1,4 @@
-import AerialVehicles.FighterJets.F15;
-import AerialVehicles.FighterJets.F16;
-import AerialVehicles.UAVs.Haron.Eitan;
-import AerialVehicles.UAVs.Haron.Shoval;
-import AerialVehicles.UAVs.Hermes.Kochav;
-import AerialVehicles.UAVs.Hermes.Zik;
+import AerialVehicles.F16;
 import Entities.Coordinates;
 import Missions.AttackMission;
 import Missions.BdaMission;
@@ -18,7 +13,7 @@ public class testF16 {
     AttackMission attackMission = new AttackMission("suspect house", coordinatesToAttack);
     BdaMission bdaMission = new BdaMission("suspect house", coordinatesToAttack);
     IntelligenceMission intelligenceMission = new IntelligenceMission("Deir al Balah", coordinatesToAttack);
-    private F16 f16 = new F16("thermal", 2, "Spice250", "Tuli", attackMission, 5, true);
+    private F16 f16 = new F16("Tuli", attackMission, 5, true, 2, "Spice250", "thermal");
 
     @Test
     public void testAttack(){
@@ -29,7 +24,7 @@ public class testF16 {
 
     @Test
     public void testBda() throws MissionTypeException {
-        f16.setMission(bdaMission);
+        f16.setAerialVehicleMission(bdaMission);
         String expectedMessage = "Tuli: F16 taking pictures of suspect house with: thermal camera";
         String message = f16.preformBda();
         assertEquals(message,expectedMessage);
